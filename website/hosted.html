@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub Table</title>
+  <!-- Include DataTables CSS (can be downloaded or use a CDN) -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .table-container {
+      width: 100%;
+      margin: 0 auto; /* Center horizontally */
+    }
+
+    /* Styles for the table headers */
+    #data-table thead th {
+      background-color: #0064a4;
+	  border-color: #0064a4;
+      color: #ffd200;
+      padding: 10px;
+    }
+
+    /* Optional: Add hover effect for the table rows */
+    #data-table tbody tr:hover {
+      background-color: #f9f9f9;
+    }
+
+    /* Styles for the iframe */
+    #iframe-container {
+      width: 100%;
+      height: 800px; /* Adjust the height as needed */
+      margin-top: 40px;
+      text-align: center; /* Center horizontally */
+      overflow: hidden; /* Hide any overflowing content */
+    }
+
+    /* Styles for the iframe */
+    #webpage-iframe {
+      width: 100%;
+      max-width: 100%; /* Set the maximum width as needed */
+      height: 100%; /* Take up the full height of the iframe container */
+    }
+  </style>
+</head>
+<body>
+  <div class="table-container">
+    <h1>Hosted Table</h1>
+    <table id="data-table">
+      <!-- Table content will be added dynamically using JavaScript -->
+    </table>
+  </div>
+
+  <div id="iframe-container">
+    <iframe id="webpage-iframe" src="" frameborder="0"></iframe>
+  </div>
+
+  <!-- Include jQuery (required by DataTables) and DataTables JS -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      // Load data from JSON and create the DataTable
+      $.getJSON('https://raw.githubusercontent.com/andythai/cncm-example/main/data.json', function(data) {
+        const tableData = [];
+
+        // Get all unique keys from the JSON data
+        const allKeys = data.reduce((keys, obj) => {
+          Object.keys(obj).forEach(key => {
+            if (!keys.includes(key)) {
+              keys.push(key);
+            }
+          });
+          return keys;
+        }, []);
+
+        // Process the JSON data
+        data.forEach(function(row) {
+          const rowData = {};
+
+          // Set default values for missing properties
+          allKeys.forEach(key => {
+            rowData[key] = row[key] || '';
+          });
+
+          // Handle the 'Webpage' property (url and name) separately
+          rowData['Data'] = `<a href="${row.url}" target="_blank">${row.name || ''}</a>`;
+
+          tableData.push(rowData);
+        });
+
+        // Create DataTable with dynamically generated columns
+        const columns = [
+          // Create the 'Data' column for URLs (handled separately)
+          { title: 'Data', data: 'Data', orderable: true }, // Make the column sortable
+          // Generate columns for other properties dynamically
+          ...allKeys.filter(key => key !== 'url' && key !== 'name').map(key => ({ title: key, data: key }))
+        ];
+
+        $('#data-table').DataTable({
+          data: tableData,
+          columns: columns,
+          paging: true,
+          searching: true,
+          ordering: true,
+          responsive: true,
+          // You can add more DataTables options here
+        });
+
+        // Handle link clicks and update the iframe src
+        $('#data-table tbody').on('click', 'a', function(event) {
+          event.preventDefault();
+          const linkUrl = $(this).attr('href');
+          $('#webpage-iframe').attr('src', linkUrl);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
+

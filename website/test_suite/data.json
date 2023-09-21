@@ -1,0 +1,18 @@
+{
+  "option1": {
+    "title": "Option 1",
+    "description": "This is the description for Option 1."
+  },
+  "option2": {
+    "title": "Option 2",
+    "description": "This is the description for Option 2."
+  },
+  "option3": {
+    "title": "Option 3",
+    "description": "This is the description for Option 3."
+  },
+  "option4": {
+    "title": "Option 4",
+    "description": "This is the description for Option 4."
+  }
+}
