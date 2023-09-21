@@ -1,0 +1,12 @@
+[
+  {
+    "url": "https://neuroglancer-demo.appspot.com/#!%7B%22dimensions%22%3A%20%7B%22z%22%3A%20%5B0.05%2C%20%22m%22%5D%2C%20%22y%22%3A%20%5B0.00125%2C%20%22m%22%5D%2C%20%22x%22%3A%20%5B0.00125%2C%20%22m%22%5D%7D%2C%20%22crossSectionScale%22%3A%2016.068429538550138%2C%20%22projectionScale%22%3A%2013107.2%2C%20%22layers%22%3A%20%5B%7B%22type%22%3A%20%22image%22%2C%20%22source%22%3A%20%7B%22url%22%3A%20%22zarr%3A//https%3A//kiwi1.ics.uci.edu/neuroglancer-ftp/B0039/ome.zarr_neuroglancer%22%2C%20%22transform%22%3A%20%7B%22outputDimensions%22%3A%20%7B%22z%22%3A%20%5B0.05%2C%20%22m%22%5D%2C%20%22y%22%3A%20%5B0.00125%2C%20%22m%22%5D%2C%20%22x%22%3A%20%5B0.00125%2C%20%22m%22%5D%7D%2C%20%22inputDimensions%22%3A%20%7B%22z%22%3A%20%5B0.05%2C%20%22m%22%5D%2C%20%22y%22%3A%20%5B0.00125%2C%20%22m%22%5D%2C%20%22x%22%3A%20%5B0.00125%2C%20%22m%22%5D%7D%7D%7D%2C%20%22blend%22%3A%20%22default%22%2C%20%22shader%22%3A%20%22%23uicontrol%20invlerp%20normalized%5Cnvoid%20main%28%29%20%7B%5Cn%20%20emitGrayscale%28normalized%28%29%29%3B%5Cn%7D%22%2C%20%22opacity%22%3A%200.4%2C%20%22visible%22%3A%20true%2C%20%22name%22%3A%20%22ome.zarr_neuroglancer%22%7D%5D%2C%20%22selectedLayer%22%3A%20%7B%22visible%22%3A%20true%2C%20%22layer%22%3A%20%22new%20layer%22%7D%2C%20%22layout%22%3A%20%224panel%22%2C%20%22position%22%3A%20%5B1.3717664160139975e-06%2C%204307.64990234375%2C%205821.93310546875%5D%7D",
+    "name": "Texera stack",
+    "Region": "Whole-brain",
+    "Injection Site": "N/A",
+    "Virus": "Rabies",
+    "Age": "N/A",
+    "Gender": "N/A"
+  }
+]
+
